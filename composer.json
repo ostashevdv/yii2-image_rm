@@ -11,8 +11,7 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "*",
-        "intervention/image" : "dev-master"
+        "yiisoft/yii2": "*"
     },
     "autoload": {
         "psr-4": {
