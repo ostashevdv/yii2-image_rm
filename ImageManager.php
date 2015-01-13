@@ -86,14 +86,12 @@ class ImageManager extends Component
         $url = $urlNorm->normalize();
 
         $dest['name'] = md5($url)."[{$width}x{$height}].".pathinfo($url, PATHINFO_EXTENSION);
-        $dest['dir'] = Yii::getAlias($cacheDir).
-            substr(md5($url), 0, 3).'/'.
-            substr(md5($url), 2, 3).'/'.
-            substr(md5($url), 5, 3).'/';
+        $dest['dir'] = Yii::getAlias($cacheDir).'/'.date("m").'/';
+
 
         $dest['path'] = FileHelper::normalizePath(Yii::getAlias('@webroot').DIRECTORY_SEPARATOR.$dest['dir']);
 
-        if (!file_exists($dest['path'].$dest['name'])) {
+        if (!file_exists($dest['path'].DIRECTORY_SEPARATOR.$dest['name'])) {
             try {
                 FileHelper::createDirectory($dest['path']);
                 $this->make($url)->fit($width, $height)->save($dest['path'].DIRECTORY_SEPARATOR.$dest['name']);
